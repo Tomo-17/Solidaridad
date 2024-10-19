@@ -1,0 +1,60 @@
+import random
+import time
+
+# Tarjetas con situaciones de ayuda
+tarjetas = [
+    "Un compañero se siente triste porque perdió su juguete.",
+    "Una amiga necesita ayuda para estudiar para un examen.",
+    "Alguien no sabe cómo jugar a un nuevo juego.",
+    "Un amigo se lesionó y necesita ayuda para llegar a casa.",
+    "Una persona se siente sola y necesita alguien con quien hablar."
+]
+
+# Opciones de respuesta para cada tarjeta
+opciones = [
+    ["Buscar juntos el juguete", "Ignorar la situación", "Decirle que busque otro juguete"],
+    ["Ayudarle a estudiar", "Decirle que no puedo ayudarle", "Darle mi libro y desearle suerte"],
+    ["Explicarle cómo jugar", "Decirle que busque las reglas", "Invitarle a ver cómo juego"],
+    ["Ayudarle a caminar", "Decirle que llame a alguien más", "Ofrecerle agua"],
+    ["Invitarle a hablar conmigo", "Decirle que busque a otro amigo", "Ignorarla"]
+]
+
+# Función para mostrar las tarjetas y opciones
+def mostrar_tarjeta(tarjeta, opciones):
+    print(f"\n🃏 Tarjeta: {tarjeta}")
+    for i, opcion in enumerate(opciones):
+        print(f"{i+1}. {opcion}")
+    print("Elige la opción correcta (1/2/3): ")
+
+# Función para evaluar la solución
+def evaluar_solucion(opcion_correcta, eleccion):
+    if eleccion == opcion_correcta:
+        return True
+    else:
+        return False
+
+# Función para jugar el juego
+def jugar_juego():
+    print("🎮 ¡Bienvenido al juego 'Rescatadores de Amistad'!")
+    print("Objetivo: Ayudar a las personas en diferentes situaciones.")
+    print("Instrucciones: Lee la tarjeta, elige la mejor solución y acumula puntos.")
+    
+    puntos = 0
+    for i in range(5):
+        indice_tarjeta = random.randint(0, len(tarjetas) - 1)
+        mostrar_tarjeta(tarjetas[indice_tarjeta], opciones[indice_tarjeta])
+        
+        eleccion = int(input("Tu elección: ")) - 1
+        opcion_correcta = 0  # Suponiendo que la primera opción siempre es la correcta
+        
+        if evaluar_solucion(opcion_correcta, eleccion):
+            puntos += 1
+            print("✅ ¡Bien hecho! Has ganado un punto.")
+        else:
+            print("❌ Esa no es la mejor solución. ¡Sigue intentándolo!")
+        time.sleep(2)
+
+    print(f"\n✨ ¡Juego terminado! Has obtenido {puntos} puntos. ¡Gracias por jugar!")
+
+# Iniciar el juego
+jugar_juego()
